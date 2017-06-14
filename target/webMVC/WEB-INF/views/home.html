@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+
+    welcome to the page
+    <span th:text="${message}" />
+
+    <form method="post" enctype="multipart/form-data" action="/webMVC/upload">
+        <input type="file" name="profilePicture" accept="image/jpeg,image/png,image/gif"/>
+        <input type="text" name="name" value="name"/>
+        <input type="submit" value="上传"/>
+    </form>
+</body>
+</html>
