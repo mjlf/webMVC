@@ -20,7 +20,7 @@ import java.io.IOException;
  */
 @Controller
 @RequestMapping({"/", "/home"})
-public class FileUploadController {
+public class FileUploadController{
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public void home(HttpServletRequest request, HttpServletResponse response, @RequestPart("profilePicture")MultipartFile profilePicture) throws IOException {
