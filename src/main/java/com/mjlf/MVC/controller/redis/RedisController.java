@@ -24,4 +24,10 @@ public class RedisController {
         redisService.setValue("123", "123123");
         System.out.println(redisService.getValue("123"));
     }
+
+    @RequestMapping(value = "/redis1", method = RequestMethod.GET)
+    public void getName1(HttpServletRequest request, HttpServletResponse response){
+        redisService.setValue("123", "123123");
+        System.out.println(redisService.getValue("123"));
+    }
 }
