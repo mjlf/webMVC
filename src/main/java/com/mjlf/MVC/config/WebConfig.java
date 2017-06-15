@@ -1,17 +1,13 @@
 package com.mjlf.MVC.config;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Description;
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.context.annotation.*;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.core.io.FileSystemResource;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
-import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.*;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
@@ -25,7 +21,10 @@ import java.io.IOException;
 
 @Configuration
 @EnableWebMvc
+@EnableAspectJAutoProxy
+@EnableScheduling
 @ComponentScan("com.mjlf.MVC")
+@MapperScan("com.mjlf.MVC")
 public class WebConfig extends WebMvcConfigurerAdapter{
 
 //    @Bean
@@ -117,5 +116,21 @@ public class WebConfig extends WebMvcConfigurerAdapter{
         CommonsMultipartResolver commonsMultipartResolver =  new CommonsMultipartResolver();
         commonsMultipartResolver.setUploadTempDir(new FileSystemResource("/tmp/webMVC"));
         return commonsMultipartResolver;
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+
+    }
+
+    /**
+     *  公共部分解析器
+     * @return
+     */
+    @Bean(name="multipartResolver")
+    public CommonsMultipartResolver commonsMultipartResolver(){
+        CommonsMultipartResolver common = new CommonsMultipartResolver();
+        common.setMaxUploadSize(10 * 1024 * 1024);//10M
+        return common;
     }
 }

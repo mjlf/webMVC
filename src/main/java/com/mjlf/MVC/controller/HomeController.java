@@ -7,6 +7,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by a123 on 17/6/1.
  */
@@ -22,5 +27,12 @@ public class HomeController{
     public String home(Model model) {
         model.addAttribute("message", "yes");
         return "home";
+    }
+
+    @RequestMapping("/welcome")
+    public void welcome(HttpServletResponse response , Date date) throws IOException {
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        response.getWriter().write("welcome here again !  current date is "+format.format(date));
     }
 }
