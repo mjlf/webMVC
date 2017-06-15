@@ -1,6 +1,6 @@
 package com.mjlf.MVC.controller.redis;
 
-import com.mjlf.MVC.redis.CacheService;
+import com.mjlf.MVC.server.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,11 +17,11 @@ import javax.servlet.http.HttpServletResponse;
 public class RedisController {
 
     @Autowired
-    private CacheService cacheService;
+    private RedisService redisService;
 
     @RequestMapping(value = "/redis", method = RequestMethod.GET)
     public void getName(HttpServletRequest request, HttpServletResponse response){
-        cacheService.set("123", "999999");
-        System.out.println(cacheService.get("123"));
+        redisService.setValue("123", "123123");
+        System.out.println(redisService.getValue("123"));
     }
 }
