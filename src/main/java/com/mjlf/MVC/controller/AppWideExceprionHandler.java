@@ -25,6 +25,11 @@ public class AppWideExceprionHandler {
         return "error";
     }
 
+    @ExceptionHandler(NullPointerException.class)
+    public String handleNullPointExcetion() {
+        return "error";
+    }
+
     @InitBinder
     public void initBinder(WebDataBinder binder){
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");

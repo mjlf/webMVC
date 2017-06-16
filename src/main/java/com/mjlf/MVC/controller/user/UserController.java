@@ -25,6 +25,7 @@ public class UserController {
     public void getName(HttpServletRequest request, HttpServletResponse response){
         String name = request.getParameter("name");
         User user = userServer.findName(name);
+        System.out.println(user);
         try {
             response.getWriter().write(user.toString());
         } catch (IOException e) {
